@@ -1,3 +1,6 @@
+# QR Code Generator
+# PyQRCodeNG version https://github.com/pyqrcode/pyqrcodeNG
+
 import streamlit as st
 import pyqrcodeng as pyqrcode
 from PIL import Image
@@ -25,7 +28,8 @@ try:
     st.text(f'Length: {len(qr_url)}')
     st.text(f'[QR Code Version: {qr.version}]   [Error Correction Grade: {qr.error}]   [Mode: {qr.mode}]   [Scale: {qr_scale}]')
     st.image(img)
-except Exception as e:
+except pyqrcode.DataOverflowError:
     st.error(f'Length: {len(qr_url)}')
-    st.error('Error: Data Overflow. Please select smaller version number or lower Error Correction Grade')
-    # st.write(e)
+    st.error('Error: Data Overflow. Please select a smaller version number or a lower Error Correction Grade')
+except Exception as e:
+    st.write(e)
