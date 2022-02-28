@@ -6,13 +6,12 @@ import pyqrcodeng as pyqrcode
 from PIL import Image
 
 QR_FILE = 'qrcode.png'
-QR_CODE_COLOR = (80, 20, 80)
-BACKGROUND_COLOR = (250, 250, 250)
+QR_CODE_COLOR = (80, 20, 80, 255)
+BACKGROUND_COLOR = (250, 250, 250, 255)
 
 st.title('QR Code Generator App')
 st.subheader('You can generate a QR code from a string or URL.')
 st.text('PyQRCodeNG version')
-
 
 qr_url = st.text_input('Enter a string or URL to generate a QR code:', value='https://code2create.club/')
 qr_version = st.sidebar.slider('Version (1-10)', 1, 10, value=5)
@@ -26,7 +25,10 @@ try:
     qr.png(QR_FILE, scale=qr_scale, module_color=QR_CODE_COLOR, background=BACKGROUND_COLOR, quiet_zone=4)
     img = Image.open(QR_FILE)
     st.text(f'Length: {len(qr_url)}')
-    st.text(f'[QR Code Version: {qr.version}]   [Error Correction Grade: {qr.error}]   [Mode: {qr.mode}]   [Scale: {qr_scale}]')
+    st.text(f'[QR Code Version: {qr.version}]   \
+              [Error Correction Grade: {qr.error}]   \
+              [Mode: {qr.mode}]   \
+              [Scale: {qr_scale}]')
     st.image(img)
 except pyqrcode.DataOverflowError:
     st.error(f'Length（文字数）: {len(qr_url)}')
