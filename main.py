@@ -25,10 +25,7 @@ try:
     qr.png(QR_FILE, scale=qr_scale, module_color=QR_CODE_COLOR, background=BACKGROUND_COLOR, quiet_zone=4)
     img = Image.open(QR_FILE)
     st.text(f'Length: {len(qr_url)}')
-    st.text(f'[QR Code Version: {qr.version}]   \
-              [Error Correction Grade: {qr.error}]   \
-              [Mode: {qr.mode}]   \
-              [Scale: {qr_scale}]')
+    st.text(f'[QR Code Version: {qr.version}]   [Error Correction Grade: {qr.error}]   [Mode: {qr.mode}]   [Scale: {qr_scale}]')
     st.image(img)
 except pyqrcode.DataOverflowError:
     st.error(f'Length（文字数）: {len(qr_url)}')
