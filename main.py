@@ -35,8 +35,7 @@ try:
 except pyqrcode.DataOverflowError:
     with col2:
         st.error(f'Character length {len(qr_url)} is too long to fit within the QR Code.')
-        st.error('Error: Data Overflow. Please select a smaller version number or a lower Error Correction Grade')
-        st.error('エラー：データあふれ　バージョンやエラー訂正のグレードを下げてください。')
+        st.error('Error: Data Overflow. Please try again with a larger version number or a lower Error Correction Grade')
+        st.error('エラー：データあふれ　バージョンを上げたり、エラー訂正のグレードを下げてお試しください。')
 except Exception as e:
     st.write(e)
-    
